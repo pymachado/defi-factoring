@@ -1,0 +1,717 @@
+{
+	"compiler": {
+		"version": "0.6.2+commit.bacdbe57"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "_contractOfFactorings",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "debts",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "destroy",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getBalanceToken",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getBuyer",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getDayMaxOfSaleInvoice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getDaysOutstandingFactoring",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getDescription",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getFactor",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getFactoringFee",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getFeePerDay",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getFundingEvent",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getInitialFunding",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getNonceInvoice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getNumberOfTokens",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getReserve",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getSeller",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getWaitOfPay",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "setFundingEvent",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "setRecovery",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "setWaitOfPay",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "setWithdrawProfit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token",
+				"outputs": [
+					{
+						"internalType": "contract Token",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "tokens",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "transferAdminship",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_factor",
+						"type": "address"
+					},
+					{
+						"internalType": "address payable",
+						"name": "_buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_nonceInvoice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_reserve",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_dayMaxOfSaleInvoice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_daysOutstandingFactoring",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_factoringFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_feePerDay",
+						"type": "uint256"
+					}
+				],
+				"name": "uploadDeal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			}
+		},
+		"userdoc": {
+			"methods": {
+				"constructor": "dev The Wallet's constructor to initialized the contract. ",
+				"destroy()": {
+					"notice": "dev This function delete the Wallet contract from the blockchain."
+				},
+				"getAmount(uint256)": {
+					"notice": "dev Returns Amount from one token that response to an id."
+				},
+				"getBalanceToken(uint256)": {
+					"notice": "dev Returns balance of token that response to an id."
+				},
+				"getBuyer(uint256)": {
+					"notice": "dev Returns Buyer from one token that response to an id."
+				},
+				"getDayMaxOfSaleInvoice(uint256)": {
+					"notice": "dev Returns dayMaxOfSaleInvoice() from one token that response to an id."
+				},
+				"getDaysOutstandingFactoring(uint256)": {
+					"notice": "dev Returns daysOutstandingFactoring() from one token that response to an id."
+				},
+				"getDescription(uint256)": {
+					"notice": "dev Returns description() from one token that response to an id."
+				},
+				"getFactor(uint256)": {
+					"notice": "dev Returns Factor from one token that response to an id."
+				},
+				"getFactoringFee(uint256)": {
+					"notice": "dev Returns factoringFee() from one token that response to an id."
+				},
+				"getFeePerDay(uint256)": {
+					"notice": "dev Returns feePerDay() from one token that response to an id."
+				},
+				"getFundingEvent(uint256)": {
+					"notice": "dev Returns function fundingEvent()'s state from one token that response to an id. "
+				},
+				"getInitialFunding(uint256)": {
+					"notice": "dev Returns initial funding from one token that response to an id."
+				},
+				"getNonceInvoice(uint256)": {
+					"notice": "dev Returns nonceInvoice from one token that response to an id."
+				},
+				"getNumberOfTokens()": {
+					"notice": "dev Returns the number of tokens upload to blockchain"
+				},
+				"getReserve(uint256)": {
+					"notice": "dev Returns reserve from one token that response to an id."
+				},
+				"getSeller(uint256)": {
+					"notice": "dev Returns Seller from one token that response to an id."
+				},
+				"getWaitOfPay(uint256)": {
+					"notice": "dev Returns function WaitOfPay()'s state from one token that response to an id. If the result is true,  t means that contract has been paid.  "
+				},
+				"setFundingEvent(uint256)": {
+					"notice": "dev Call fundingEvent() function from the token that aim to id argument. "
+				},
+				"setRecovery(uint256,uint256)": {
+					"notice": "dev Call recovery(_amount) function from the token that aim to id argument. "
+				},
+				"setWaitOfPay(uint256)": {
+					"notice": "dev Call waitOfPay() function from the token that aim to id argument. "
+				},
+				"setWithdrawProfit(uint256,uint256)": {
+					"notice": "dev Call withdrawProfit(_amount) function from the token that aim to id argument. "
+				},
+				"transferAdminship(address)": {
+					"notice": "dev Transfer the power of this system to another person.  "
+				},
+				"uploadDeal(address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)": {
+					"notice": "dev This function is a factory of tokens. She make one ContractOfFactoring smart contract with each call, etting the token's address , save it into an array and a mapping and upload to blockcahin.  t's my favorite :)"
+				}
+			},
+			"notice": "dev This is the main contract called Wallet."
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Wallet.sol": "Wallet"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Context.sol": {
+			"keccak256": "0xbf3719f365c9734f122d4d4bff99c38653b5a232c01bf6d01d9b605a22649a90",
+			"urls": [
+				"bzz-raw://fd3446fc2ec6d730c3fa5b2734b46913349a39ff1f170dd9c8ed397e459c2b85",
+				"dweb:/ipfs/QmPoNxKBFcpZp37jdFtZmWhSVJ2fgX5qPZqwGn3Ls7GnzR"
+			]
+		},
+		"ContractOfFactoring.sol": {
+			"keccak256": "0xbe5e1357c240883c1804b0f69142f002495a531320229786336eaf7947f3b55e",
+			"urls": [
+				"bzz-raw://83363b9fb1acd984f81ef5ff4697605d59d0db8ed54dafdacdadaab43e69b91c",
+				"dweb:/ipfs/Qmd1JE82s6Qu8UCujTHjKE7kWNM1NrLBoUU3ThfdjwKDz2"
+			]
+		},
+		"Ownable.sol": {
+			"keccak256": "0xff1b08637f110314b33983b68cb800acad9f7991bb72cc0adc4919ffe187fa72",
+			"urls": [
+				"bzz-raw://c57b6e346c98e15551166652c395e9d7f3db060cbaea30cb61a60d3f288ddd45",
+				"dweb:/ipfs/QmVDcxCYwBWRP9xdCbkPCcxNxQw14EJUw5RycnPVbGPg8r"
+			]
+		},
+		"Wallet.sol": {
+			"keccak256": "0x5a5780f16bc545158eaed45e206d27dad0c715aee407bb6479d88e3a04fa6613",
+			"urls": [
+				"bzz-raw://3c02269914e43ad84c9ad3dac571bd6cbdfac65e56a7831001bc667c8cf6c605",
+				"dweb:/ipfs/QmauP1EWACaoybh32otfdV5bzYWW3LQ8szewcCF3GwLLQD"
+			]
+		}
+	},
+	"version": 1
+}

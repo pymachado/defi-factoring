@@ -1,0 +1,297 @@
+{
+	"compiler": {
+		"version": "0.6.2+commit.bacdbe57"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_numFunction",
+						"type": "uint256"
+					}
+				],
+				"name": "activated",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "amount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "buyer",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "dayMaxOfSaleInvoice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "daysOutstandingFactoring",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "description",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "factor",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "factoringFee",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "feePerDay",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_factor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "fundingEvent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nonceInvoice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_factor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "recovery",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "reserve",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "seller",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "waitOfPay",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_factor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawProfit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {},
+			"notice": "dev This code represents a ContractOfFactoring's interface to can comunicate ith the smart contract deployed and living on the blockchain. "
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Wallet.sol": "Token"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Context.sol": {
+			"keccak256": "0xbf3719f365c9734f122d4d4bff99c38653b5a232c01bf6d01d9b605a22649a90",
+			"urls": [
+				"bzz-raw://fd3446fc2ec6d730c3fa5b2734b46913349a39ff1f170dd9c8ed397e459c2b85",
+				"dweb:/ipfs/QmPoNxKBFcpZp37jdFtZmWhSVJ2fgX5qPZqwGn3Ls7GnzR"
+			]
+		},
+		"ContractOfFactoring.sol": {
+			"keccak256": "0xbe5e1357c240883c1804b0f69142f002495a531320229786336eaf7947f3b55e",
+			"urls": [
+				"bzz-raw://83363b9fb1acd984f81ef5ff4697605d59d0db8ed54dafdacdadaab43e69b91c",
+				"dweb:/ipfs/Qmd1JE82s6Qu8UCujTHjKE7kWNM1NrLBoUU3ThfdjwKDz2"
+			]
+		},
+		"Ownable.sol": {
+			"keccak256": "0xff1b08637f110314b33983b68cb800acad9f7991bb72cc0adc4919ffe187fa72",
+			"urls": [
+				"bzz-raw://c57b6e346c98e15551166652c395e9d7f3db060cbaea30cb61a60d3f288ddd45",
+				"dweb:/ipfs/QmVDcxCYwBWRP9xdCbkPCcxNxQw14EJUw5RycnPVbGPg8r"
+			]
+		},
+		"Wallet.sol": {
+			"keccak256": "0x5a5780f16bc545158eaed45e206d27dad0c715aee407bb6479d88e3a04fa6613",
+			"urls": [
+				"bzz-raw://3c02269914e43ad84c9ad3dac571bd6cbdfac65e56a7831001bc667c8cf6c605",
+				"dweb:/ipfs/QmauP1EWACaoybh32otfdV5bzYWW3LQ8szewcCF3GwLLQD"
+			]
+		}
+	},
+	"version": 1
+}
