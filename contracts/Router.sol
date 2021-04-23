@@ -1,71 +1,32 @@
-pragma solidity ^0.6.2;
+pragma solidity ^0.8.0;
 
-import "./Ownable.sol";
-import "./ContractOfFactoring.sol";
+import "../node_modules\@openzeppelin\contracts\access\Ownable.sol"
+import "./TokenOfFactoring.sol";
+import "./ITokenFactoring.sol"
 
 /**
- * @title Wallet
+ * @title Router
  * @author Pedro Machado
  * @notice Reserva’s ERP can manager and controller the
  * inputs/outputs Tx from clients and routing the amount to recipients. 
- * The wallet aim to SC Contract of Factoring’s address.  
-   
+ * The Router aim to SC Contract of Factoring’s address.     
  * @dev Each input of finance data can be in wei unit.  
 */
 
-/**
- *@dev This code represents a ContractOfFactoring's interface to can comunicate
- *with the smart contract deployed and living on the blockchain. 
- */
-interface Token {
-    function seller() external returns(address);//Return seller from the token to aim. 
-    function factor() external returns(address);//Return factor from the token to aim.
-    function buyer() external returns(address);//Return buyer from the token to aim.
-    function nonceInvoice() external returns(uint256); //Return token's invoice number from the token to aim.
-    function amount() external returns(uint256);//Return net value of the pay to withdrawal for the factor.
-    function reserve() external returns(uint256); //Return value of Factor's reserve. 
-    function dayMaxOfSaleInvoice() external returns(uint256);//Return day maximum of sale invoice.
-    function daysOutstandingFactoring() external returns(uint256); //Return day outstanding factoring.
-    function factoringFee() external returns(uint256);//Return factoring fee along to day outstanding factoring.
-    function feePerDay() external returns(uint256);//Return factoring fee per day after expirated day outstanding factoring.
-    function description() external returns(string memory);// Return description of deal.
-    function fundingEvent(address payable _factor, uint256 _value) external;//Called Token's fundingEvent() function, just Token's Factor can do it.   
-    function waitOfPay(address payable _buyer, uint256 _value) external;//Called Token's waitOfPay() function, just Token's Buyer can do it.
-    function withdrawProfit(address payable _factor, uint256 _amount) external;//Called Token's withdrawProfit(), just Token's Factor can do it.
-    function recovery(address payable _factor, uint256 _amount) external;//Called Token's recovery() function , just Token's factor can do it.
-    function activated(uint256 _numFunction) external returns(bool);//Returns the token's state. "if was pay or not".
-
-} 
-/**
- *@dev This is the main contract called Wallet.
- */
-contract Wallet is Ownable {
-    address public admin;//This address represents the user authorized to execute changes into a system. 
-    Token public token;//Aim to interface.
-    address[]  public _contractOfFactorings;//Count the number of tokens uploaded to blockchain.
+contract Router is Ownable {
+    TokenOfFactoring private token;//Aim to interface.
+    address[] private _tokenOfFactorings;//Count the number of tokens uploaded to blockchain.
     mapping (uint256 => address payable) public tokens;//Returns the token's address linked with his token's id. 
     mapping (uint => uint) public debts;//Returns wich tokens linkeding with one invoice. 
 
     /**
-     *@dev The Wallet's constructor to initialized the contract. 
+     *@dev The Router's constructor to initialized the contract. 
      */
-    constructor() public {
-        admin = owner();
-    }
+    constructor() {}
 
     /**
-     *@notice The next group of functions response to Wallet's scope. 
-     */
-
-    /**
-     *@dev Transfer the power of this system to another person.  
-     */
-    function transferAdminship(address _newAdmin) external {
-        transferOwnership(_newAdmin);
-    }
-
-    /**
-     *@dev This function is a factory of tokens. She make one ContractOfFactoring smart contract with each call,
+     *@notice The next group of functions response to Router's scope. 
+     *@dev This function is a factory of tokens. She make one TokenOfFactoring smart contract with each call,
      *getting the token's address , save it into an array and a mapping and upload to blockcahin. 
      *It's my favorite :)
      */
@@ -79,7 +40,7 @@ contract Wallet is Ownable {
         uint256 _daysOutstandingFactoring,
         uint256 _factoringFee,
         uint256 _feePerDay) external {
-            ContractOfFactoring contractOfFactoring = new ContractOfFactoring(
+            TokenOfFactoring tokenOfFactoring = new TokenOfFactoring(
                 _msgSender(),       
                 _factor, 
                 _buyer,
@@ -91,9 +52,9 @@ contract Wallet is Ownable {
                 _factoringFee,
                 _feePerDay
             );
-        _contractOfFactorings.push(address(contractOfFactoring));
-        uint id = _contractOfFactorings.length - 1;
-        tokens[id] = address(contractOfFactoring);
+        _tokenOfFactorings.push(address(tokenOfFactoring));
+        uint id = _tokenOfFactorings.length - 1;
+        tokens[id] = address(tokenOfFactoring);
         debts[_nonceInvoice] = id;
     }
 
@@ -101,18 +62,18 @@ contract Wallet is Ownable {
      *@dev Returns the number of tokens upload to blockchain
      */
     function getNumberOfTokens() external view returns(uint256) {
-        return _contractOfFactorings.length;
+        return _tokenOfFactorings.length;
     }
 
     /**
-     *@dev This function delete the Wallet contract from the blockchain.
+     *@dev This function delete the Router contract from the blockchain.
      */
     function destroy() external onlyOwner() {
-        selfdestruct(payable(admin));
+        selfdestruct(payable(owner()));
     }
 
     /**
-     *@notice The next group of functions response to Token's Interface. 
+     *@notice The next group of functions response to ITokenFactoring's Interface. 
      *@dev Declaration of function setters. The next group of functions change the state of blockchain,
      *calling one token's function to pay or witdraw.   
      */
@@ -121,7 +82,7 @@ contract Wallet is Ownable {
       *@dev Call fundingEvent() function from the token that aim to id argument. 
       */
     function setFundingEvent(uint256 _id) external payable {
-        token = Token(tokens[_id]);
+        token = ITokenFactoring(tokens[_id]);
         tokens[_id].transfer(msg.value);
         token.fundingEvent(_msgSender(), msg.value);
     }
@@ -130,7 +91,7 @@ contract Wallet is Ownable {
       *@dev Call waitOfPay() function from the token that aim to id argument. 
       */
     function setWaitOfPay(uint256 _id) external payable {
-        token = Token(tokens[_id]);
+        token = ITokenFactoring(tokens[_id]);
         tokens[_id].transfer(msg.value);
         token.waitOfPay(_msgSender(), msg.value);
     }
@@ -139,7 +100,7 @@ contract Wallet is Ownable {
       *@dev Call withdrawProfit(_amount) function from the token that aim to id argument. 
       */
     function setWithdrawProfit(uint256 _id, uint256 _amount) external {
-        token = Token(tokens[_id]);
+        token = ITokenFactoring(tokens[_id]);
         token.withdrawProfit(_msgSender(), _amount);
     }
 
@@ -147,7 +108,7 @@ contract Wallet is Ownable {
       *@dev Call recovery(_amount) function from the token that aim to id argument. 
       */
     function setRecovery(uint256 _id, uint256 _amount) external {
-        token = Token(tokens[_id]);
+        token = ITokenFactoring(tokens[_id]);
         token.recovery(_msgSender(), _amount);
     }
 
@@ -160,8 +121,8 @@ contract Wallet is Ownable {
      *@dev Returns function fundingEvent()'s state from one token that response to an id. 
      */  
     function getFundingEvent(uint256 _id) external returns(bool) {
-        token = Token(tokens[_id]);
-        return token.activated(0);
+        token = ITokenFactoring(tokens[_id]);
+        return token._activated(0);
     }
 
     /**
@@ -169,104 +130,104 @@ contract Wallet is Ownable {
      *it means that contract has been paid.  
      */
     function getWaitOfPay(uint256 _id) external returns(bool) {
-        token = Token(tokens[_id]);
-        return token.activated(1);
+        token = ITokenFactoring(tokens[_id]);
+        return token._activated(1);
     }
 
     /**
      *@dev Returns Seller from one token that response to an id.
      */
     function getSeller(uint256 _id) external returns(address) {
-        token = Token(tokens[_id]);
-        return token.seller();
+        token = ITokenFactoring(tokens[_id]);
+        return token._seller();
     }
 
     /**
      *@dev Returns Factor from one token that response to an id.
      */
     function getFactor(uint256 _id) external returns(address) {
-        token = Token(tokens[_id]);
-        return token.factor();
+        token = ITokenFactoring(tokens[_id]);
+        return token._factor();
     }
 
     /**
      *@dev Returns Buyer from one token that response to an id.
      */
     function getBuyer(uint256 _id) external returns(address) {
-        token = Token(tokens[_id]);
-        return token.buyer();
+        token = ITokenFactoring(tokens[_id]);
+        return token._buyer();
     }
 
     /**
      *@dev Returns nonceInvoice from one token that response to an id.
      */
     function getNonceInvoice(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.nonceInvoice();        
+        token = ITokenFactoring(tokens[_id]);
+        return token._nonceInvoice();        
     }
 
     /**
      *@dev Returns Amount from one token that response to an id.
      */
     function getAmount(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.amount();
+        token = ITokenFactoring(tokens[_id]);
+        return token._amount();
     }
 
     /**
      *@dev Returns reserve from one token that response to an id.
      */
     function getReserve(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.reserve();
+        token = ITokenFactoring(tokens[_id]);
+        return token._reserve();
     }
 
     /**
      *@dev Returns initial funding from one token that response to an id.
      */
     function getInitialFunding(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.amount() - token.reserve();
+        token = ITokenFactoring(tokens[_id]);
+        return token._amount() - token._reserve();
     }
 
     /**
      *@dev Returns daysOutstandingFactoring() from one token that response to an id.
      */
     function getDaysOutstandingFactoring(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.daysOutstandingFactoring();
+        token = ITokenFactoring(tokens[_id]);
+        return token._daysOutstandingFactoring();
     }
 
     /**
      *@dev Returns dayMaxOfSaleInvoice() from one token that response to an id.
      */
     function getDayMaxOfSaleInvoice(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.dayMaxOfSaleInvoice();
+        token = ITokenFactoring(tokens[_id]);
+        return token._dayMaxOfSaleInvoice();
     }
 
     /**
      *@dev Returns factoringFee() from one token that response to an id.
      */
     function getFactoringFee(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.factoringFee();
+        token = ITokenFactoring(tokens[_id]);
+        return token._factoringFee();
     }
 
     /**
      *@dev Returns feePerDay() from one token that response to an id.
      */
     function getFeePerDay(uint256 _id) external returns(uint256) {
-        token = Token(tokens[_id]);
-        return token.feePerDay();
+        token = ITokenFactoring(tokens[_id]);
+        return token._feePerDay();
     }
 
     /**
      *@dev Returns description() from one token that response to an id.
      */
     function getDescription(uint _id) external returns(string memory) {
-        token = Token(tokens[_id]);
-        return token.description();
+        token = ITokenFactoring(tokens[_id]);
+        return token._description();
     }
     
     /**
